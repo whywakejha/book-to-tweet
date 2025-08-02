@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EPUB Card Reader</title>
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  <!-- JSZip library for unpacking EPUBs in the browser -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+</head>
+<body>
+  <!-- Landing page section shown when no book is loaded -->
+  <div id="landing-page" class="landing">
+    <header class="hero-header">
+      <h1>EPUB Card Reader</h1>
+      <p class="subtitle">Read your favourite books one short card at a time</p>
+    </header>
+    <div class="hero-content">
+      <!-- Hidden file input to accept only EPUB files -->
+      <input type="file" id="fileInput" accept=".epub" class="file-input" />
+      <!-- Stylised button triggers the hidden file input -->
+      <button id="uploadBtn" class="upload-btn">Upload EPUB</button>
+    </div>
+  </div>
+
+  <!-- Reader section shown after a book is loaded or resumed -->
+  <div id="reader-section" class="reader hidden">
+    <!-- Top navigation bar containing the card counter, jump input and theme toggle -->
+    <div class="top-bar">
+      <div class="counter-wrapper">
+        <span id="nav-counter" class="counter">0&nbsp;/&nbsp;0</span>
+      </div>
+      <!-- Button to reset the reader and return to the upload page -->
+      <button id="resetBtn" class="reset-btn" title="Upload a new book">Upload new</button>
+      <!-- Input to jump directly to a card by number -->
+      <input type="number" id="jumpInput" class="jump-input" placeholder="Go to…" min="1" />
+      <!-- Dark mode toggle switch -->
+      <label class="toggle-wrapper">
+        <input type="checkbox" id="themeSwitcher" class="toggle-checkbox" />
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+    <!-- Container for the card elements -->
+    <div id="card-container" class="card-container">
+      <!-- Cards will be inserted here dynamically -->
+    </div>
+    <!-- Key legend displayed subtly at the bottom -->
+    <div class="legend">Press <b>a</b> to go back, <b>d</b> or <b>Space</b> to go forward</div>
+  </div>
+
+  <!-- Main application script -->
+  <script src="script.js"></script>
+</body>
+</html>

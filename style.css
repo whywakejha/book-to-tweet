@@ -1,0 +1,254 @@
+/*
+ * Global styles and variables
+ *
+ * Colours are defined as CSS variables so they can be toggled easily between
+ * light and dark modes. The `.dark` class applied to the `body` element
+ * overrides these variables to produce a dark theme. Transitions help
+ * smoothen colour changes when toggling themes.
+ */
+
+/* Default (light) theme variables */
+:root {
+  --bg-colour: #f5f5f5;
+  --text-colour: #222;
+  --card-bg: #ffffff;
+  --card-text: #222;
+  --accent-colour: #007acc;
+  --border-colour: #ddd;
+  --legend-colour: rgba(0, 0, 0, 0.4);
+}
+
+/* Dark theme overrides */
+body.dark {
+  --bg-colour: #1e1e1e;
+  --text-colour: #e0e0e0;
+  --card-bg: #2c2c2c;
+  --card-text: #e0e0e0;
+  --accent-colour: #4499dd;
+  --border-colour: #444;
+  --legend-colour: rgba(255, 255, 255, 0.4);
+}
+
+/* Reset some basic elements */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-colour);
+  color: var(--text-colour);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Landing page styles */
+.landing {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.hero-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero-header .subtitle {
+  font-size: 1.1rem;
+  color: var(--text-colour);
+  margin-bottom: 2rem;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Hide the default file input */
+.file-input {
+  display: none;
+}
+
+/* Large upload button styling */
+.upload-btn {
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  color: #fff;
+  background-color: var(--accent-colour);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+/* Darken the button slightly on hover using brightness filter */
+.upload-btn:hover {
+  filter: brightness(0.9);
+}
+
+/* Reader section hidden initially */
+/* Utility class to hide elements, takes precedence over other display rules */
+.hidden {
+  display: none !important;
+}
+
+/* Reader section container */
+.reader {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Top bar containing counter, jump input and theme toggle */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--border-colour);
+  background-color: var(--card-bg);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.counter-wrapper {
+  flex: 1;
+}
+
+.counter {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.jump-input {
+  width: 6rem;
+  padding: 0.3rem 0.5rem;
+  margin-right: 1rem;
+  border: 1px solid var(--border-colour);
+  border-radius: 4px;
+  background-color: var(--card-bg);
+  color: var(--text-colour);
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.jump-input:focus {
+  outline: none;
+  border-color: var(--accent-colour);
+}
+
+/* Reset / upload new button styling */
+.reset-btn {
+  padding: 0.3rem 0.6rem;
+  margin-right: 0.5rem;
+  font-size: 0.9rem;
+  background-color: var(--accent-colour);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: filter 0.2s ease;
+}
+.reset-btn:hover {
+  filter: brightness(0.9);
+}
+
+/* Dark mode toggle styling */
+.toggle-wrapper {
+  position: relative;
+  width: 50px;
+  height: 24px;
+}
+
+.toggle-checkbox {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--border-colour);
+  border-radius: 34px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.toggle-slider::before {
+  content: "";
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: var(--card-bg);
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+
+.toggle-checkbox:checked + .toggle-slider {
+  background-color: var(--accent-colour);
+}
+
+.toggle-checkbox:checked + .toggle-slider::before {
+  transform: translateX(26px);
+}
+
+/* Card container styles */
+.card-container {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background-color: var(--bg-colour);
+  transition: background-color 0.3s ease;
+}
+
+/* Individual card styling */
+.card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 600px;
+  width: 100%;
+  padding: 2rem;
+  background-color: var(--card-bg);
+  color: var(--card-text);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-size: 1.2rem;
+  line-height: 1.5;
+  word-wrap: break-word;
+  opacity: 1;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+/* Legend styling: subtle and unobtrusive */
+.legend {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  font-size: 0.75rem;
+  color: var(--legend-colour);
+  pointer-events: none;
+}
