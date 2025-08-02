@@ -221,6 +221,9 @@ body {
   padding: 2rem;
   background-color: var(--bg-colour);
   transition: background-color 0.3s ease;
+  /* Establish perspective so that card rotations appear 3D. Without
+   * this the rolodex flip effect will not work correctly. */
+  perspective: 1000px;
 }
 
 /* Individual card styling */
@@ -241,6 +244,18 @@ body {
   word-wrap: break-word;
   opacity: 1;
   transition: transform 0.5s ease, opacity 0.5s ease;
+  /* Allow cards to shrink to fit their content and scroll if the
+   * content exceeds a comfortable reading height. A maximum height is
+   * provided to prevent extremely long chapters from overflowing the
+   * viewport. */
+  max-height: 70vh;
+  overflow-y: auto;
+  /* Enable 3D rotations on cards and hide the reverse face during
+   * animation. The transform origin at the top creates a natural
+   * rolodex‑like flip effect. */
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transform-origin: top center;
 }
 
 /* Legend styling: subtle and unobtrusive */

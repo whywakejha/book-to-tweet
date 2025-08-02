@@ -17,10 +17,12 @@
       <p class="subtitle">Read your favourite books one short card at a time</p>
     </header>
     <div class="hero-content">
-      <!-- Hidden file input to accept only EPUB files -->
-      <input type="file" id="fileInput" accept=".epub" class="file-input" />
+      <!-- Hidden file input to accept multiple document types (EPUB, PDF, TXT) -->
+      <!-- Accept additional formats by listing them comma‑separated.  -->
+      <input type="file" id="fileInput" accept=".epub,.pdf,.txt,.md" class="file-input" />
       <!-- Stylised button triggers the hidden file input -->
-      <button id="uploadBtn" class="upload-btn">Upload EPUB</button>
+      <!-- Use a generic label since multiple formats (EPUB/PDF/TXT/MD) are supported -->
+      <button id="uploadBtn" class="upload-btn">Upload file</button>
     </div>
   </div>
 
@@ -51,5 +53,7 @@
 
   <!-- Main application script -->
   <script src="script.js"></script>
+  <!-- PDF.js library for PDF parsing. The worker script is configured in script.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
 </body>
 </html>
